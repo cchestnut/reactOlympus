@@ -6,8 +6,8 @@ import {
   Text,
   View,
 } from 'react-vr';
-
-class Greeting extends Component {
+//import TimedGazeGreeting from './TimedGazeGreeting';
+/*class Greeting extends Component {
 	constructor (props){
 		super(props);
 		this.state = { gazeTime: 1, currentText: 0};
@@ -27,11 +27,36 @@ class Greeting extends Component {
 			<Text className={stateClass}>{display}</Text>
 		);
 	}
+}*/
+class TimedGazeGreeting extends React.Component {
+	constructor (props) {
+		super(props);
+		this.state = {gazeTime: 1, display: ''};
+	}
+
+	render() {
+		let timeMap = this.props.textTimeMap;
+		if (!timeMap) return (<Text>'no props'</Text>);
+		let gazeTime = this.state.gazeTime;
+		let display = timeMap.find( (timedObj) => {
+			return gazeTime >= timedObj.startTime && gazeTime <= timedObj.endTime;
+		});
+		if (!display) display = {text: 'failure'};
+		let textClass ='test'; /*gazeTime == display.startTime ? 'fadeIn' :
+			gazeTime == display.endTime ? 'fadeOut' : '';*/
+		console.log(display.text);
+		return (
+		<Text style={this.props.style}>{display.text}</Text>
+		);
+	}
 }
 
 
 export default class SilverLiningsWelcome extends React.Component {
   render() {
+	const textArray = [
+		{startTime:0, endTime:5, text:'Success'}
+	  ];
     return (
       <View>
         <Pano 
@@ -39,7 +64,7 @@ export default class SilverLiningsWelcome extends React.Component {
 	    style={{
 		    transform: [/*{scaleX: .2}, {scaleY: .2}*/]
 	    }}/>
-        <Greeting
+        <TimedGazeGreeting
           style={{
             backgroundColor: '#777879',
             fontSize: 0.3,
@@ -50,12 +75,11 @@ export default class SilverLiningsWelcome extends React.Component {
             textAlign: 'center',
             textAlignVertical: 'center',
             transform: [{translate: [0, 0, -7]}],
-          }}>
-          Welcome
-        </Text>
+          }}
+	  textTimeMap= {textArray}/>
       </View>
     );
   }
 };
 
-AppRegistry.registerComponent('WelcomeToVR', () => WelcomeToVR);
+AppRegistry.registerComponent('SilverLinings', () => SilverLiningsWelcome);
