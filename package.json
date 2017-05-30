@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/cchestnut/reactOlympus/issues"
   },
-  "homepage": "https://github.com/cchestnut/reactOlympus#readme"
+  "homepage": "https://github.com/cchestnut/reactOlympus#readme",
+  "dependencies": {
+    "simple-raycaster": "^1.0.1"
+  }
 }

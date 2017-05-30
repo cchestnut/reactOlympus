@@ -41,13 +41,23 @@ class TimedGazeGreeting extends React.Component {
 		let display = timeMap.find( (timedObj) => {
 			return gazeTime >= timedObj.startTime && gazeTime <= timedObj.endTime;
 		});
-		if (!display) display = {text: 'failure'};
+		if (!display) display = {text: ''};
 		let textClass ='test'; /*gazeTime == display.startTime ? 'fadeIn' :
 			gazeTime == display.endTime ? 'fadeOut' : '';*/
 		console.log(display.text);
 		return (
-		<Text style={this.props.style}>{display.text}</Text>
+		<Text 
+		    style={this.props.style}
+		    onEnter={ () => this.animateProgress() }
+		    onExit= { () => this.pauseProgress() }>
+			{display.text}
+		</Text>
 		);
+	}
+	animateProgress() {
+		this.setTimeout(() => {this.state.gazeTime++;}, 1000);
+	}
+	pauseProgress(){
 	}
 }
 
@@ -55,7 +65,8 @@ class TimedGazeGreeting extends React.Component {
 export default class SilverLiningsWelcome extends React.Component {
   render() {
 	const textArray = [
-		{startTime:0, endTime:5, text:'Success'}
+		{startTime:0, endTime:5, text: 'Welcome'},
+		{startTime:8, endTime:15, text: 'Keep Thine Head Up'}
 	  ];
     return (
       <View>
