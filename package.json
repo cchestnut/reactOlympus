@@ -1,0 +1,26 @@
+{
+  "name": "react-olympus",
+  "version": "0.0.1",
+  "description": "Silver Linings built with React VR",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cchestnut/reactOlympus.git"
+  },
+  "keywords": [
+    "vr",
+    "react",
+    "multiplayer",
+    "heaven",
+    "silverlinigns"
+  ],
+  "author": "betanutz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cchestnut/reactOlympus/issues"
+  },
+  "homepage": "https://github.com/cchestnut/reactOlympus#readme"
+}
